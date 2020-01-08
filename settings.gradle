@@ -1,2 +1,2 @@
-include ':presentation', ':domain', ':local', ':remote', ':data'
+include ':presentation', ':domain', ':local', ':remote', ':data', ':dto'
 rootProject.name='Sphere News'

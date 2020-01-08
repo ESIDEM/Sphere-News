@@ -1,7 +1,18 @@
 apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
 
 dependencies {
+    implementation project(':dto')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "javax.inject:javax.inject:1"
+
+
+    // RX Java
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJava_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin"
 }
 
 sourceCompatibility = "7"

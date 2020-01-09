@@ -1,6 +1,7 @@
 package ng.com.techdepo.spherenews.viewmodels
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ng.com.techdepo.domain.usecases.specific.GetNewsRemote
@@ -14,6 +15,8 @@ class NewsViewModel @Inject constructor(private val getNewsRemote: GetNewsRemote
 
     var newsList = MutableLiveData<Event<List<Article>>>()
 
+    var newsListForBinding = MutableLiveData<List<Article>>()
+
 
 
     fun getNewsRemote(mutableList: MutableList<String>){
@@ -24,6 +27,7 @@ class NewsViewModel @Inject constructor(private val getNewsRemote: GetNewsRemote
         getNewsRemote.execute(mutableList,{news ->
 
             newsList.postValue(Event(EventState.SUCCESS,data = news))
+            newsListForBinding.postValue(news)
 
         },{ error ->
 

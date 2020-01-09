@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/allNewsFragment"
-        android:name="ng.com.techdepo.spherenews.AllNews"
+        android:name="ng.com.techdepo.spherenews.ui.AllNews"
         android:label="fragment_all_new"
         tools:layout="@layout/fragment_all_news" >
 
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/top_headlines_fragment"
-        android:name="ng.com.techdepo.spherenews.TopHeadlines"
+        android:name="ng.com.techdepo.spherenews.ui.TopHeadlines"
         android:label="fragment_to[_head_lines"
         tools:layout="@layout/fragment_top_headlines" >
 

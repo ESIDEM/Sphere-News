@@ -1,5 +1,6 @@
 package ng.com.techdepo.dto
 
+
 data class Article(val source: Source,
               var author: String,
               var title: String,

@@ -1,8 +1,13 @@
-package ng.com.techdepo.spherenews.di
+package ng.com.techdepo.spherenews.di.modules
 
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
+import ng.com.techdepo.data.repository.AppRemote
+import ng.com.techdepo.domain.usecases.PostExecutionThread
+import ng.com.techdepo.remote.AppRemoteImpl
 import ng.com.techdepo.remote.TopHeadlinesEndpoint
 import ng.com.techdepo.spherenews.BASE_URL
 import retrofit2.Retrofit
@@ -35,5 +40,12 @@ class NetworkModule {
     fun provideAPI(retrofit: Retrofit):TopHeadlinesEndpoint{
         return retrofit.create(TopHeadlinesEndpoint::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideAppRemote(appRemoteImpl: AppRemoteImpl): AppRemote = appRemoteImpl
+
+
+
 
 }

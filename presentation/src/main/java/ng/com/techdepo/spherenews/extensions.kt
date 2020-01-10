@@ -1,6 +1,8 @@
 package ng.com.techdepo.spherenews
 
 import android.text.format.DateUtils
+import android.view.View
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,4 +22,15 @@ fun timeAgo(dateString :String):String{
         Calendar.getInstance()
             .getTimeInMillis(),
         DateUtils.MINUTE_IN_MILLIS).toString()
+}
+
+
+
+fun SwipeRefreshLayout.showProgress(){
+    isRefreshing = true
+}
+
+fun SwipeRefreshLayout.hideProgress(){
+
+    isRefreshing = false
 }

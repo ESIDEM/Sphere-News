@@ -17,14 +17,18 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Toolbar Title"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:id="@+id/toolbar_title" />
+            android:typeface="sans"
+            app:fontFamily="@font/alegreya_sans_sc"
+            tools:layout_editor_absoluteX="147dp"
+            tools:layout_editor_absoluteY="14dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,6 +36,7 @@
         android:layout_height="wrap_content"
         app:menu="@menu/main_menu"
         app:elevation="5dp"
+        android:theme="@style/Widget.BottomNavigationView"
         android:id="@+id/bottomNavigationView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

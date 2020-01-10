@@ -11,8 +11,15 @@ class NewsRepositoryImpl @Inject constructor(val factory: AppDataStoreFactory):N
     override fun getAllNewsRemote(country: String, apiKey: String): Flowable<List<Article>> {
         return factory.retrieveRemoteDataStore().getAllNewsRemote(country,apiKey).doOnNext {
 
+
         }.doOnError {
 
+
+
         }
+    }
+
+    override fun getLocalNews(): Flowable<List<Article>> {
+        return factory.retrieveCacheDataStore().getLocalNews()
     }
 }

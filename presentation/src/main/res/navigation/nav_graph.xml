@@ -14,11 +14,20 @@
     </fragment>
 
     <fragment
+        android:id="@+id/sport_news_fragment"
+        android:name="ng.com.techdepo.spherenews.ui.SportNews"
+        android:label="fragment_sport_news"
+        tools:layout="@layout/fragment_sport_news" >
+
+    </fragment>
+    <fragment
         android:id="@+id/top_headlines_fragment"
         android:name="ng.com.techdepo.spherenews.ui.TopHeadlines"
         android:label="fragment_to[_head_lines"
         tools:layout="@layout/fragment_top_headlines" >
 
     </fragment>
+
+
 
 </navigation>

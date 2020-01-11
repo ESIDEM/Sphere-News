@@ -6,10 +6,15 @@
         android:id="@+id/allNewsFragment"
         android:icon="@drawable/all_icon"
         android:title="All News" />
-
+    <item
+        android:id="@+id/sport_news_fragment"
+        android:icon="@drawable/sport_icon"
+        android:title="Sport News" />
     <item
         android:id="@+id/top_headlines_fragment"
         android:icon="@drawable/top_headlines"
         android:title="Top Headlines" />
+
+
 
 </menu>

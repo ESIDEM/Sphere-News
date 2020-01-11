@@ -13,6 +13,15 @@ interface TopHeadlinesEndpoint {
     @GET("top-headlines")
     fun getTopHeadlines(
         @Query("country") country: String,
+        @Query("pageSize") pageSize: String,
+        @Query("apiKey") apiKey: String
+    ): Flowable<ApiResponse>
+
+
+    @GET("top-headlines")
+    fun getSportNews(
+        @Query("category") category: String,
+        @Query("pageSize") pageSize: String,
         @Query("apiKey") apiKey: String
     ): Flowable<ApiResponse>
 }

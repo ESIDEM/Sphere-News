@@ -8,5 +8,7 @@ interface AppLocal {
 
 
     fun getLocalNews(): Flowable<List<Article>>
+    fun getSportNewsLocal():Flowable<List<Article>>
     fun saveNews(news: List<Article>): Completable
+    fun saveSportNews(news: List<Article>): Completable
 }

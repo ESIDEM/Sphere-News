@@ -7,8 +7,19 @@ import javax.inject.Inject
 
 class AppRemoteImpl @Inject constructor(val topHeadlinesEndpoint: TopHeadlinesEndpoint):AppRemote {
 
-    override fun getAllNewsRemote(country: String, apiKey: String): Flowable<List<Article>> {
-        return  topHeadlinesEndpoint.getTopHeadlines(country,apiKey).map {
+    override fun getAllNewsRemote(country: String,pageSize:String, apiKey: String): Flowable<List<Article>> {
+        return  topHeadlinesEndpoint.getTopHeadlines(country,pageSize,apiKey).map {
+
+            it.articles
+        }
+    }
+
+    override fun getSportNewsRemote(
+        category: String,
+        pageSize: String,
+        apiKey: String
+    ): Flowable<List<Article>> {
+        return topHeadlinesEndpoint.getSportNews(category,pageSize,apiKey).map {
             it.articles
         }
     }

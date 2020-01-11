@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(val factory: AppDataStoreFactory):NewsRepository {
 
-    override fun getAllNewsRemote(country: String, apiKey: String): Flowable<List<Article>> {
-        return factory.retrieveRemoteDataStore().getAllNewsRemote(country,apiKey).doOnNext {
+    override fun getAllNewsRemote(country: String,pageSize: String, apiKey: String): Flowable<List<Article>> {
+        return factory.retrieveRemoteDataStore().getAllNewsRemote(country,pageSize,apiKey).doOnNext {
 
 
         }.doOnError {
@@ -19,7 +19,21 @@ class NewsRepositoryImpl @Inject constructor(val factory: AppDataStoreFactory):N
         }
     }
 
+    override fun getSportNewsRemote(
+        category: String,
+        pageSize: String,
+        apiKey: String
+    ): Flowable<List<Article>> {
+       return factory.retrieveRemoteDataStore().getSportNewsRemote(category,pageSize,apiKey).doOnNext {
+
+       }
+    }
+
     override fun getLocalNews(): Flowable<List<Article>> {
         return factory.retrieveCacheDataStore().getLocalNews()
+    }
+
+    override fun getSportNewsLocal(): Flowable<List<Article>> {
+       return factory.retrieveCacheDataStore().getSportNewsLocal()
     }
 }

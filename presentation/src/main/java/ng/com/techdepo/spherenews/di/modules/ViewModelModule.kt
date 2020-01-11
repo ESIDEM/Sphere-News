@@ -11,6 +11,7 @@ import ng.com.techdepo.domain.usecases.PostExecutionThread
 import ng.com.techdepo.spherenews.UiThread
 import ng.com.techdepo.spherenews.ViewModelKey
 import ng.com.techdepo.spherenews.viewmodels.NewsViewModel
+import ng.com.techdepo.spherenews.viewmodels.SportNewsViewModel
 import ng.com.techdepo.spherenews.viewmodels.ViewModelFactory
 
 @Module
@@ -29,4 +30,9 @@ abstract fun bind(uiThread: UiThread):PostExecutionThread
     @IntoMap
     @ViewModelKey(NewsViewModel::class)
     internal abstract fun overViewViewModel(viewModel: NewsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SportNewsViewModel::class)
+    internal abstract fun sportViewModel(viewModel: SportNewsViewModel): ViewModel
 }

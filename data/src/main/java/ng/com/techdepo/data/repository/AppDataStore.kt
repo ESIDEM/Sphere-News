@@ -15,4 +15,5 @@ interface AppDataStore {
     fun saveSportNews(news: List<Article>): Completable
     fun clearAllNews()
     fun clearSportNews()
+    fun getUserSearchImputNews(query:String,pageSize:String,apiKey:String): Flowable<List<Article>>
 }

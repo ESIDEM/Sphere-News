@@ -36,4 +36,14 @@ class NewsRepositoryImpl @Inject constructor(val factory: AppDataStoreFactory):N
     override fun getSportNewsLocal(): Flowable<List<Article>> {
        return factory.retrieveCacheDataStore().getSportNewsLocal()
     }
+
+    override fun getUserImput(
+        query: String,
+        pageSize: String,
+        apiKey: String
+    ): Flowable<List<Article>> {
+        return factory.retrieveRemoteDataStore().getUserSearchImputNews(query,pageSize,apiKey).doOnNext {
+
+        }
+    }
 }

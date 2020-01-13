@@ -23,4 +23,14 @@ class AppRemoteImpl @Inject constructor(val topHeadlinesEndpoint: TopHeadlinesEn
             it.articles
         }
     }
+
+    override fun getUserSearchImputNews(
+        query: String,
+        pageSize: String,
+        apiKey: String
+    ): Flowable<List<Article>> {
+        return topHeadlinesEndpoint.getUserSearchInput(query,pageSize,apiKey).map {
+            it.articles
+        }
+    }
 }

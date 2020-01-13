@@ -62,4 +62,20 @@ class AppRemoteDataStore @Inject constructor(val remote: AppRemote, val appLocal
     override fun clearSportNews() {
         throw UnsupportedOperationException()
     }
+
+    override fun getUserSearchImputNews(
+        query: String,
+        pageSize: String,
+        apiKey: String
+    ): Flowable<List<Article>> {
+        return remote.getUserSearchImputNews(query,pageSize,apiKey).doOnNext {
+
+            if (it.isEmpty()) {
+                appLocal.saveNews(it).subscribe()
+            }else{
+                appLocal.clearAllNews()
+                appLocal.saveNews(it).subscribe()
+            }
+        }
+    }
 }

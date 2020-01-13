@@ -45,4 +45,12 @@ class AppCacheDataStore @Inject constructor(private val appLocal: AppLocal):AppD
     override fun clearSportNews() {
        appLocal.clearSportNews()
     }
+
+    override fun getUserSearchImputNews(
+        query: String,
+        pageSize: String,
+        apiKey: String
+    ): Flowable<List<Article>> {
+        throw UnsupportedOperationException()
+    }
 }

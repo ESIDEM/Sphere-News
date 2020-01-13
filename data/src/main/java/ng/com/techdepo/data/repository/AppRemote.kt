@@ -7,4 +7,5 @@ interface AppRemote {
 
     fun getAllNewsRemote(country:String,pageSize:String,apiKey:String): Flowable<List<Article>>
     fun getSportNewsRemote(category:String,pageSize:String,apiKey:String):Flowable<List<Article>>
+    fun getUserSearchImputNews(query:String,pageSize:String,apiKey:String): Flowable<List<Article>>
 }

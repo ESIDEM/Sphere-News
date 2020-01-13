@@ -10,5 +10,6 @@ interface NewsRepository {
     fun getSportNewsRemote(category:String,pageSize:String,apiKey:String):Flowable<List<Article>>
     fun getLocalNews(): Flowable<List<Article>>
     fun getSportNewsLocal():Flowable<List<Article>>
+    fun getUserImput(query:String,pageSize:String,apiKey:String):Flowable<List<Article>>
 
 }

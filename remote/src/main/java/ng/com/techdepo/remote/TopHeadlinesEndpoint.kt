@@ -24,4 +24,11 @@ interface TopHeadlinesEndpoint {
         @Query("pageSize") pageSize: String,
         @Query("apiKey") apiKey: String
     ): Flowable<ApiResponse>
+
+    @GET("top-headlines")
+    fun getUserSearchInput(
+        @Query("q") q: String,
+        @Query("pageSize") pageSize: String,
+        @Query("apiKey") apiKey: String
+    ): Flowable<ApiResponse>
 }

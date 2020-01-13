@@ -11,4 +11,7 @@ interface AppLocal {
     fun getSportNewsLocal():Flowable<List<Article>>
     fun saveNews(news: List<Article>): Completable
     fun saveSportNews(news: List<Article>): Completable
+    fun clearAllNews()
+    fun clearSportNews()
+
 }

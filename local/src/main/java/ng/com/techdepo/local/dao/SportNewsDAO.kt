@@ -17,4 +17,7 @@ interface SportNewsDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveSportNews(news: List<SportNewsEntity>)
+
+    @Query("DELETE FROM port_news")
+    fun clearSportNews()
 }

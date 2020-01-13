@@ -13,8 +13,12 @@ class AppRemoteDataStore @Inject constructor(val remote: AppRemote, val appLocal
     override fun getAllNewsRemote(country: String, pageSize: String,apiKey: String): Flowable<List<Article>> {
         return remote.getAllNewsRemote(country,pageSize,apiKey).doOnNext {
 
-            appLocal.saveNews(it).subscribe()
-
+            if (it.isEmpty()) {
+                appLocal.saveNews(it).subscribe()
+            }else{
+                appLocal.clearAllNews()
+                appLocal.saveNews(it).subscribe()
+            }
         }
     }
 
@@ -28,7 +32,14 @@ class AppRemoteDataStore @Inject constructor(val remote: AppRemote, val appLocal
         apiKey: String
     ): Flowable<List<Article>> {
        return remote.getSportNewsRemote(category,pageSize,apiKey).doOnNext {
-           appLocal.saveSportNews(it).subscribe()
+           if (it.isEmpty()){
+               appLocal.saveSportNews(it).subscribe()
+           }else{
+
+               appLocal.clearSportNews()
+               appLocal.saveSportNews(it).subscribe()
+           }
+
        }
     }
 
@@ -41,6 +52,14 @@ class AppRemoteDataStore @Inject constructor(val remote: AppRemote, val appLocal
     }
 
     override fun saveSportNews(news: List<Article>): Completable {
+        throw UnsupportedOperationException()
+    }
+
+    override fun clearAllNews() {
+        throw UnsupportedOperationException()
+    }
+
+    override fun clearSportNews() {
         throw UnsupportedOperationException()
     }
 }

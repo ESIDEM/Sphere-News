@@ -37,4 +37,12 @@ class AppCacheDataStore @Inject constructor(private val appLocal: AppLocal):AppD
     override fun saveSportNews(news: List<Article>): Completable {
         return appLocal.saveSportNews(news)
     }
+
+    override fun clearAllNews() {
+        appLocal.clearAllNews()
+    }
+
+    override fun clearSportNews() {
+       appLocal.clearSportNews()
+    }
 }

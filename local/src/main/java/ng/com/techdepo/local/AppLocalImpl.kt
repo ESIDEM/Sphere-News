@@ -54,27 +54,27 @@ class AppLocalImpl @Inject constructor(private val appDatabase: AppDatabase):App
     }
 
     override fun saveNews(news: List<Article>): Completable {
-      return Completable.fromAction{
-          appDatabase.newsDao().saveNewsFeeds(news.map {
-              NewsEntity(
-                  ng.com.techdepo.local.entity.Source(
-                      it.source.id,
-                      it.source.name
-                  ),
-                  it.author,
-                  it.title,
-                  it.description,
-                  it.url,
-                  it.urlToImage,
-                  it.publishedAt,
-                  it.content
-              )
-          })
-      }
+        return Completable.fromAction {
+            appDatabase.newsDao().saveNewsFeeds(news.map {
+                NewsEntity(
+                    ng.com.techdepo.local.entity.Source(
+                        it.source.id,
+                        it.source.name
+                    ),
+                    it.author,
+                    it.title,
+                    it.description,
+                    it.url,
+                    it.urlToImage,
+                    it.publishedAt,
+                    it.content
+                )
+            })
+        }
     }
 
     override fun saveSportNews(news: List<Article>): Completable {
-        return Completable.fromAction{
+        return Completable.fromAction {
             appDatabase.sportNewsDao().saveSportNews(news.map {
                 SportNewsEntity(
                     ng.com.techdepo.local.entity.Source(
@@ -91,5 +91,13 @@ class AppLocalImpl @Inject constructor(private val appDatabase: AppDatabase):App
                 )
             })
         }
+    }
+
+    override fun clearAllNews() {
+        appDatabase.newsDao().clearDatabase()
+    }
+
+    override fun clearSportNews() {
+        appDatabase.sportNewsDao().clearSportNews()
     }
 }

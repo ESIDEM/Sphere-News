@@ -16,4 +16,7 @@ interface NewsDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveNewsFeeds(news: List<NewsEntity>)
+
+    @Query("DELETE FROM news")
+    fun clearDatabase()
 }

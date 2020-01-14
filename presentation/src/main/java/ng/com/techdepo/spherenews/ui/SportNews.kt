@@ -68,13 +68,6 @@ class SportNews : Fragment() {
                     EventState.ERROR -> binding.sweepToRefresh.hideProgress()
                 }
                 it.data?.let { feeds ->
-                    if (feeds.isNotEmpty()) {
-
-                        Toast.makeText(activity,feeds.size.toString(), Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(activity,feeds.size.toString(), Toast.LENGTH_SHORT).show()
-                    }
-
                 }
 
                 it.throwable?.let {

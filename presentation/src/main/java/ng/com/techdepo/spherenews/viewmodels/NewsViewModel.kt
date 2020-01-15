@@ -5,9 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ng.com.techdepo.domain.usecases.specific.*
-import ng.com.techdepo.dto.Article
 import ng.com.techdepo.spherenews.Event
 import ng.com.techdepo.spherenews.EventState
+import ng.com.techdepo.spherenews.dto.PresentationArticle
+import ng.com.techdepo.spherenews.mapper.ArticleMapper
 import javax.inject.Inject
 
 class NewsViewModel @Inject constructor(private val getNewsRemote: GetNewsRemote,
@@ -16,16 +17,20 @@ class NewsViewModel @Inject constructor(private val getNewsRemote: GetNewsRemote
                                         ):ViewModel() {
 
 
-    var newsList = MutableLiveData<Event<List<Article>>>()
+    val articleM = ArticleMapper()
+    var newsList = MutableLiveData<Event<List<PresentationArticle>>>()
 
-    var newsListForBinding = MutableLiveData<List<Article>>()
+    var newsListForBinding = MutableLiveData<List<PresentationArticle>>()
 
+    private val _navigateToSelectedArticle = MutableLiveData<PresentationArticle>()
+    val navigateToSelectedArticle: LiveData<PresentationArticle>
+        get() = _navigateToSelectedArticle
 
  fun getNewsLocal(){
 
     getNewsLocal.execute(null,{news ->
 
-        newsListForBinding.postValue(news)
+        newsListForBinding.postValue(articleM.mapFromDomain(news))
 
     },{ error ->
 
@@ -45,7 +50,7 @@ class NewsViewModel @Inject constructor(private val getNewsRemote: GetNewsRemote
 
         getNewsRemote.execute(mutableList,{news ->
 
-            newsList.postValue(Event(EventState.SUCCESS,data = news))
+            newsList.postValue(Event(EventState.SUCCESS,data = articleM.mapFromDomain(news)))
 
         },{ error ->
 
@@ -63,7 +68,7 @@ class NewsViewModel @Inject constructor(private val getNewsRemote: GetNewsRemote
 
         getUserImputNews.execute(mutableList,{news ->
 
-            newsList.postValue(Event(EventState.SUCCESS,data = news))
+            newsList.postValue(Event(EventState.SUCCESS,data = articleM.mapFromDomain(news)))
 
         },{ error ->
 
@@ -72,5 +77,13 @@ class NewsViewModel @Inject constructor(private val getNewsRemote: GetNewsRemote
 
         }
         )
+    }
+
+    fun displayPropertyDetails(article: PresentationArticle) {
+        _navigateToSelectedArticle.value = article
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedArticle.value = null
     }
 }

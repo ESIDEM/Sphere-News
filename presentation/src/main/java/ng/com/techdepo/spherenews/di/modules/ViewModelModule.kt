@@ -35,4 +35,5 @@ abstract fun bind(uiThread: UiThread):PostExecutionThread
     @IntoMap
     @ViewModelKey(SportNewsViewModel::class)
     internal abstract fun sportViewModel(viewModel: SportNewsViewModel): ViewModel
+
 }

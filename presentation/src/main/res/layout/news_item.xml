@@ -6,7 +6,7 @@
     <data>
         <variable
             name="article"
-            type="ng.com.techdepo.dto.Article" />
+            type="ng.com.techdepo.spherenews.dto.PresentationArticle" />
 
     </data>
     <androidx.cardview.widget.CardView

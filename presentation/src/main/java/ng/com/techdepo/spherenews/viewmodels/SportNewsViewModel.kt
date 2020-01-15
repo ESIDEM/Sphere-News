@@ -5,23 +5,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ng.com.techdepo.domain.usecases.specific.GetSportNewsLocal
 import ng.com.techdepo.domain.usecases.specific.GetSportNewsRemote
-import ng.com.techdepo.dto.Article
 import ng.com.techdepo.spherenews.Event
 import ng.com.techdepo.spherenews.EventState
+import ng.com.techdepo.spherenews.dto.PresentationArticle
+import ng.com.techdepo.spherenews.mapper.ArticleMapper
 import javax.inject.Inject
 
 class SportNewsViewModel @Inject constructor(private val getSportNewsRemote: GetSportNewsRemote,
                                              private val getSportNewsLocal: GetSportNewsLocal
 ):ViewModel() {
 
-    var sportNewsListForBinding = MutableLiveData<List<Article>>()
-    var sportNewsList = MutableLiveData<Event<List<Article>>>()
+    val articleM = ArticleMapper()
+    var sportNewsListForBinding = MutableLiveData<List<PresentationArticle>>()
+    var sportNewsList = MutableLiveData<Event<List<PresentationArticle>>>()
 
     fun getSportNewsLocal(){
 
         getSportNewsLocal.execute(null,{news ->
 
-            sportNewsListForBinding.postValue(news)
+            sportNewsListForBinding.postValue(articleM.mapFromDomain(news))
 
         },{ error ->
 
@@ -42,7 +44,7 @@ class SportNewsViewModel @Inject constructor(private val getSportNewsRemote: Get
 
         getSportNewsRemote.execute(mutableList,{news ->
 
-            sportNewsList.postValue(Event(EventState.SUCCESS,data = news))
+            sportNewsList.postValue(Event(EventState.SUCCESS,data = articleM.mapFromDomain(news)))
 
         },{ error ->
 
